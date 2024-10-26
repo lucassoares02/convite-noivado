@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 85px;
     background-image: url('anel.png');
     background-repeat: no-repeat;
     background-position: center;
