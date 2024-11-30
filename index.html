@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Giselli&Lucas</title>
-  </head>
-  <body>
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Giselli&Lucas</title>
+</head>
+
+<body>
+  <div id="content" style="display: none;">
     <div class="row-left">
       <img src="flor1.png" alt="" />
     </div>
@@ -24,51 +26,87 @@
       </div>
       <span class="text1">
         É com imensa alegria que convidamos você para compartilhar conosco um momento muito especial em nossas vidas.
-        <br />
-        <br />
-        Vamos celebrar o nosso noivado, rodeados por pessoas queridas, e seria uma honra contar com a sua presença para tornar esse dia ainda mais
-        inesquecível.
+        <br /><br />
+        Vamos celebrar o nosso noivado, rodeados por pessoas queridas, e seria uma honra contar com a sua presença para tornar esse dia ainda mais inesquecível.
       </span>
       <br />
       <span class="text1"> 19:00 </span>
       <span class="text2">15 de Fevereiro de 2025</span>
       <br />
 
-      <!-- <div class="row">
-        <span class="text1"> Planície da Serra </span>
+      <div class="row">
+        <a class="button-outline" href="https://maps.app.goo.gl/TLwja3cEB1xVVh4K6">
+          <div class="column-footer">
+            <i class="material-icons">church</i>
+            Localização
+          </div>
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="button-outline" id="confirmButton">
+          <div class="column-footer">
+            <i class="material-icons">check</i>
+            Confirmar
+          </div>
+        </a>
       </div>
-      <a class="button-outline" href="https://maps.app.goo.gl/TLwja3cEB1xVVh4K6">
-        <i class="material-icons">location_on</i>
-        Reserva Porto
-      </a>
-    </div> -->
-    <div class="row">
-        
-        <a class="button-outline" href="https://maps.app.goo.gl/TLwja3cEB1xVVh4K6">
-        <div class="column-footer">
-                <i class="material-icons">church</i>
-                Localização
-            </div>
-        </a>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <a class="button-outline" href="https://maps.app.goo.gl/TLwja3cEB1xVVh4K6">
-        <div class="column-footer">
-                <i class="material-icons">check</i>
-                Confirmar
-            </div>
-        </a>
-        <!-- <a class="button-outline" href="https://maps.app.goo.gl/TLwja3cEB1xVVh4K6">
-        <div class="column-footer">
-                <i class="material-icons">sell</i>
-                Ajude-nos
-            </div>
-        </a> -->
     </div>
     <div class="row-rigth">
       <img src="flor2.png" alt="" width="120" />
     </div>
-  </body>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id'); // Pega o valor do parâmetro 'id'
+
+      if (id) {
+        const apiUrl = `https://seller-backend.onrender.com/wedding/get?id=${id}`;
+
+        // Verifica a confirmação
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            if (data.confirmou === 1) {
+              // Redireciona diretamente para a página do mapa
+              window.location.replace('map.html');
+            } else {
+              // Mostra o conteúdo caso ainda não tenha confirmado
+              document.getElementById('content').style.display = 'block';
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao verificar confirmação:', error);
+            document.getElementById('content').style.display = 'block';
+          });
+      } else {
+        console.log('ID não encontrado na URL.');
+      }
+    });
+
+    document.getElementById('confirmButton').addEventListener('click', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      if (id) {
+        const apiUrl = `https://seller-backend.onrender.com/wedding/confirm?id=${id}`;
+
+        fetch(apiUrl)
+          .then(response => {
+            if (response.ok) {
+              console.log('Confirmação enviada com sucesso!');
+              window.location.replace('map.html');
+            } else {
+              console.log('Erro ao enviar confirmação.');
+            }
+          })
+          .catch(error => {
+            console.error('Erro:', error);
+          });
+      } else {
+        console.log('ID não encontrado na URL.');
+      }
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+  <title>Giselli&Lucas</title>
+  <style>
+    .copied {
+      color: white !important;
+      border: 1px solid #626b4dff;
+      background-color: #626b4dff;
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="column-confirmado">
+    <br>
+    <strong>Quer nos presentear?</strong>
+
+    <div class="pix">
+      <img
+        src="https://drive.google.com/thumbnail?id=1Ecsf5FtBI5b6vAUOXZ7AAaUqgZZcTqow"
+        alt="macacão exemplo 1"
+        style="object-fit: cover; border-radius: 8px"
+      >
+    </div>
+
+    <button
+      style="margin-top: 20px;"
+      class="buttonPix"
+      id="copyButton"
+      onclick="copyPixCode()"
+    >Pix Copia e Cola</button>
+
+    <br>
+
+  </div>
+
+  <!-- Biblioteca Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    function launchConfetti() {
+      const duration = 1000; // Duração total da animação
+      const end = Date.now() + duration;
+
+      // Função para explosões contínuas
+      (function frame() {
+        confetti({
+          particleCount: 5, // Pequenas explosões
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ['#bb0000', '#00BBFFFF', '#FFFF00FF', '#00FF3CFF', '#2600FFFF']
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ['#bb0000', '#00BBFFFF', '#FFFF00FF', '#00FF3CFF', '#2600FFFF']
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+
+      // Grande explosão inicial
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { x: 0.5, y: 0.5 }
+      });
+    }
+
+    // Função para copiar o código PIX e alterar o botão temporariamente
+    function copyPixCode() {
+      const pixCode = "00020126700014BR.GOV.BCB.PIX0111131134976630233Um presente  para Lucas e Giselli5204000053039865802BR5923Lucas Soares dos Santos6009SAO PAULO621405103ceBldlsFQ6304DE5F";
+      navigator.clipboard.writeText(pixCode)
+        .then(() => {
+          const button = document.getElementById('copyButton');
+          button.textContent = 'Copiado com sucesso!';
+          button.classList.remove('buttonPix');
+          button.classList.add('copied');
+          launchConfetti();
+          setTimeout(() => {
+            button.textContent = 'Copiar Código PIX';
+            button.classList.remove('copied');
+            button.classList.add('buttonPix');
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Erro ao copiar o código PIX: ', err);
+        });
+    }
+  </script>
+
+</body>
+
+</html>
