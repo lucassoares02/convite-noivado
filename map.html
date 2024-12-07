@@ -36,55 +36,10 @@
   </style>
 </head>
 
-<body>
+<body class="body-map">
   <div class="column-map">
-    <div class="banner">
-      <h3 style="text-align: center;">
-        🥂
-        <br>
-        Presença confirmada!
-      </h3>
-    </div>
-    <!-- Biblioteca Google Maps -->
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3745.632987832158!2d-40.2455103!3d-20.1493535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb81fd0c0a93a45%3A0x20e295b9adba9e49!2sReserva%20Porto%20Espa%C3%A7o%20para%20Eventos!5e0!3m2!1spt-BR!2sbr!4v1732881537969!5m2!1spt-BR!2sbr"
-      width="100%"
-      height="250"
-      style="border:0; "
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-    ></iframe>
-    <span style="font-size: 16px; margin-top: 10px;">
-      Endereço
-    </span>
-    <strong>
-      Espaço Reserva Porto
-    </strong>
-    <span style="font-size: 16px;">
-      Rua E, Número: 2 - Planície da Serra, Serra - ES
-    </span>
 
-    <span style="font-size: 16px;">15 de Fevereiro de 2025 às 19:00hs</span>
-
-    <!-- Contagem regressiva -->
-    <div
-      style="color: #626b4dff;"
-      class="countdown"
-      id="countdown"
-    ></div>
-    <br>
-    <span
-      class="text1"
-      style="margin-top: -20px;"
-    >
-      Estamos muito felizes em saber que você estará presente em nosso noivado.
-      <br />
-      Sua confirmação torna esse momento ainda mais especial para nós.
-      Mal podemos esperar para celebrar esse dia com pessoas tão queridas como você.
-    </span>
-
-    <div class="row">
+    <!-- <div class="row">
       <span class="title">Giselli</span>
       &nbsp;
       <span style="margin-top: 30px;">&</span>
@@ -94,10 +49,89 @@
         style="margin-top: 60px;"
       >Lucas</span>
     </div>
+    <br> -->
+
+    <!-- <a
+      style="margin-bottom: 50px;"
+      href="confirmado.html"
+      class="buttonPix"
+    >Quer nos ajudar?</a> -->
+
+
+    <div class="row">
+      <span class="confirm-text">Presença</span>
+      <span
+        class="confirm-text"
+        style="margin-top: 140px; margin-left: -100px;"
+      >Confirmada!</span>
+    </div>
+
+
+    <!-- <span style="font-size: 16px; margin-top: 10px;">
+      Endereço
+    </span>
+    <strong>
+      Espaço Reserva Porto
+    </strong>
+    <span style="font-size: 16px;">
+      Rua E, Número: 2 - Planície da Serra, Serra - ES
+    </span>
+
+    <span style="font-size: 16px;">15 de Fevereiro de 2025 às 19:00hs</span> -->
+
+    <!-- Contagem regressiva -->
+    <br>
+    <span>
+      🥂
+    </span>
+    <br>
+    <span
+      class="text1"
+      style="margin-top: -20px;"
+    >
+      Estamos muito felizes em saber que você estará presente em nosso noivado, torna esse momento ainda mais especial para nós.
+    </span>
+
+    <div
+      style="color: white;"
+      class="countdown"
+      id="countdown"
+    ></div>
+
     <br>
 
-    <a style="margin-bottom: 50px;" href="confirmado.html" class="buttonPix">Quer nos ajudar?</a>
+    <strong>
+      🎁
+      Presentes
+    </strong>
 
+    <br>
+
+    <span class="text1">
+      Se puder nos presentear, aceitamos mimos ou contribuições via pix para o nosso chá de panela.
+    </span>
+
+    <br>
+    <a
+      style="margin-bottom: 50px;"
+      href="stories.html"
+      class="buttonPix"
+    >Quer nos ajudar?</a>
+
+
+    <!-- <br>
+    <strong>Clique no mapa para ver o endereço</strong>
+    <br>
+    
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3745.632987832158!2d-40.2455103!3d-20.1493535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xb81fd0c0a93a45%3A0x20e295b9adba9e49!2sReserva%20Porto%20Espa%C3%A7o%20para%20Eventos!5e0!3m2!1spt-BR!2sbr!4v1732881537969!5m2!1spt-BR!2sbr"
+      width="100%"
+      height="250"
+      style="border:0; "
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe> -->
 
 
   </div>
@@ -108,10 +142,10 @@
 
   <script>
 
-function navigate() {
-            // Substitui a página atual no histórico, impedindo que o usuário retorne
-            window.location.replace('confirmado.html');
-        }
+    function navigate() {
+      // Substitui a página atual no histórico, impedindo que o usuário retorne
+      window.location.replace('confirmado.html');
+    }
 
     function launchConfetti() {
       const duration = 1000; // Duração total da animação
@@ -124,14 +158,14 @@ function navigate() {
           angle: 60,
           spread: 55,
           origin: { x: 0 },
-          colors: ['#bb0000', '#00BBFFFF', '#FFFF00FF', '#00FF3CFF', '#2600FFFF']
+          colors: [' #FFD700', '#FFAC00', '#FFD700']
         });
         confetti({
           particleCount: 5,
           angle: 120,
           spread: 55,
           origin: { x: 1 },
-          colors: ['#bb0000', '#00BBFFFF', '#FFFF00FF', '#00FF3CFF', '#2600FFFF']
+          colors: [' #FFD700', '#FFAC00', '#FFD700']
         });
 
         if (Date.now() < end) {
@@ -143,7 +177,8 @@ function navigate() {
       confetti({
         particleCount: 200,
         spread: 100,
-        origin: { x: 0.5, y: 0.5 }
+        origin: { x: 0.5, y: 0.5 },
+        colors: [' #FFD700', '#FFAC00', '#FFD700']
       });
     }
 
@@ -157,28 +192,28 @@ function navigate() {
       startCountdown();
     };
 
-// Contagem regressiva
-function startCountdown() {
-  const eventDate = new Date('2025-02-15T19:00:00').getTime();
+    // Contagem regressiva
+    function startCountdown() {
+      const eventDate = new Date('2025-02-15T19:00:00').getTime();
 
-  setInterval(() => {
-    const now = new Date().getTime();
-    const distance = eventDate - now;
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        const minutes = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        const seconds = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
 
-    document.getElementById('countdown').innerHTML =
-      `<span style="font-size: 16px;font-weight: normal">Falta apenas</span> <br>${days} dias ${hours}:${minutes}:${seconds}hs`;
+        document.getElementById('countdown').innerHTML =
+          `<span style="font-size: 16px;font-weight: normal"></span> <br>${days} dias ${hours}:${minutes}:${seconds}hs`;
 
-    if (distance < 0) {
-      clearInterval(countdown);
-      document.getElementById('countdown').innerHTML = "O evento já começou!";
+        if (distance < 0) {
+          clearInterval(countdown);
+          document.getElementById('countdown').innerHTML = "O evento já começou!";
+        }
+      }, 1000);
     }
-  }, 1000);
-}
 
   </script>
 

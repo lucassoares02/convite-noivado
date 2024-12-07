@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Stories Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #story-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+        }
+
+        #progress-bar-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            height: 4px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .progress-segment {
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.3);
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-segment-fill {
+            width: 0%;
+            height: 100%;
+            background-color: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: width 5s linear;
+        }
+
+        .pix {
+            position: absolute;
+            bottom: 100px;
+            /* Distância do botão de copiar */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            /* Ajuste o tamanho da imagem */
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .copy-btn-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Para garantir que a imagem ocupe o tamanho correto */
+        .pix img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* Mensagem de copiado com sucesso */
+        .copy-msg {
+            position: absolute;
+            bottom: 70px;
+            /* Ajuste para posicionar a mensagem */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="story-container">
+        <!-- Barra de progresso segmentada -->
+        <div id="progress-bar-container"></div>
+
+
+        <!-- Áreas para navegação -->
+        <div
+            id="prev"
+            style="position: absolute; top: 0; left: 0; height: 100%; width: 50%; cursor: pointer;"
+        ></div>
+        <div
+            id="next"
+            style="position: absolute; top: 0; right: 0; height: 100%; width: 50%; cursor: pointer;"
+        ></div>
+
+        <!-- Imagem do story -->
+        <img
+            id="story-image"
+            src=""
+            alt="Story"
+            style="width: 100%; height: 100%; object-fit: cover; opacity: 0.3;"
+        >
+    </div>
+
+
+    <div style="background-color: black; width: 100%; display: flex; flex-direction: row; justify-content: center;">
+
+        <!-- Imagem do QR Code Pix -->
+        <div class="pix">
+            <br>
+            <strong style="color: white;">Quer nos ajudar?</strong>
+
+            <br>
+            <img
+                style="margin-bottom: 130px;"
+                src="https://drive.google.com/thumbnail?id=1Ecsf5FtBI5b6vAUOXZ7AAaUqgZZcTqow"
+                alt="QR Code Pix"
+            >
+        </div>
+
+        <!-- Botão de copiar texto -->
+        <button
+            style="margin-bottom: 130px;"
+            class="copy-btn-container"
+            onclick="copyText()"
+        >
+            Pix Copia e Cola
+        </button>
+
+
+
+    <!-- Mensagem de sucesso de cópia -->
+    <div id="copy-msg" class="copy-msg">
+        Copiado com sucesso!
+    </div>
+
+
+
+    </div>
+
+
+
+    <script>
+        function copyText() {
+            const text = "00020126700014BR.GOV.BCB.PIX0111131134976630233Um presente  para Lucas e Giselli5204000053039865802BR5923Lucas Soares dos Santos6009SAO PAULO621405103ceBldlsFQ6304DE5F";  // O texto que será copiado
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Mostrar a mensagem de sucesso
+                    const msg = document.getElementById("copy-msg");
+                    msg.style.display = "block";  // Exibe a mensagem
+
+                    // Esconde a mensagem após 2 segundos
+                    setTimeout(() => {
+                        msg.style.display = "none";
+                    }, 2000); // 2000ms = 2 segundos
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar texto: ', err);
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const stories = [
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220724-WA0280_qqklk1.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220725-WA0249_sc1ndw.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20221206-WA0143_aydxib.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20231203-WA0083_g3o56g.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220409-WA0182_ucedjt.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230311-WA0079_zebb4r.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230311-WA0079_zebb4r.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/Screenshot_20231212_065104_WhatsApp_riyhgj.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230418-WA0123_lo2co1.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220409-WA0367_li7dnz.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220313-WA0024_ko73f4.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230618-WA0109_abyrft.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220813-WA0175_zk6b8i.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230924-WA0023_ta9igg.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220409-WA0305_hzn8dx.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220807-WA0057_vgqnl0.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20231203-WA0058_eaqqgu.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220725-WA0169_nez3ga.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20231203-WA0127_ol1ju0.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/Screenshot_20231212_173347_Photos_vxyyfm.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230924-WA0045_om28tk.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220409-WA0280_fqmyuo.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220409-WA0182_tjzrqw.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/20240421_172806_zqv0k5.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220313-WA0024_c99vob.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220724-WA0448_q1vtvg.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220424-WA0024_nubhwk.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20231203-WA0060_mvjymz.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20221115-WA0042_i3ttj8.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220725-WA0171_tx2zrf.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG_20220409_143316_nuawfv.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230618-WA0081_r1px23.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220813-WA0081_n4yfpr.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20220813-WA0175_zk6b8i.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20230924-WA0023_ta9igg.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/IMG-20221206-WA0143_aydxib.jpg",
+                "https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/Screenshot_20240220_211830_WhatsApp_snobn1.jpg",
+            ];
+
+            let currentStoryIndex = 0;
+            const storyImage = document.getElementById("story-image");
+            const progressBarContainer = document.getElementById("progress-bar-container");
+            const nextArea = document.getElementById("next");
+            const prevArea = document.getElementById("prev");
+            let progressTimeout;
+
+            // Inicializa a barra de progresso segmentada
+            function initializeProgressBar() {
+                progressBarContainer.innerHTML = ""; // Limpa segmentos anteriores
+                stories.forEach((_, index) => {
+                    const segment = document.createElement("div");
+                    segment.classList.add("progress-segment");
+
+                    const segmentFill = document.createElement("div");
+                    segmentFill.classList.add("progress-segment-fill");
+                    segmentFill.id = `progress-segment-${index}`;
+                    segment.appendChild(segmentFill);
+
+                    progressBarContainer.appendChild(segment);
+                });
+            }
+
+            function showStory(index) {
+                if (index < 0 || index >= stories.length) return;
+
+                // Atualiza a imagem
+                currentStoryIndex = index;
+                storyImage.src = stories[currentStoryIndex];
+
+                // Atrasar a transição da barra para o preenchimento
+                setTimeout(() => {
+                    resetProgress();
+                }, 100); // Atraso para permitir a renderização da imagem
+            }
+
+            function resetProgress() {
+                clearTimeout(progressTimeout);
+
+                // Zera a transição de todos os segmentos
+                const fills = document.querySelectorAll(".progress-segment-fill");
+                fills.forEach((fill, index) => {
+                    fill.style.transition = "none";
+                    fill.style.width = index < currentStoryIndex ? "100%" : "0%"; // Preenche os segmentos anteriores
+                });
+
+                // Força a reavaliação do estilo
+                const currentFill = document.getElementById(`progress-segment-${currentStoryIndex}`);
+                currentFill.offsetHeight; // Força uma reavaliação para garantir que o estilo seja aplicado
+                currentFill.style.transition = "width 5s linear";
+                currentFill.style.width = "100%";
+
+                // Define o timeout para o próximo story
+                progressTimeout = setTimeout(() => {
+                    nextStory();
+                }, 5000); // 5 segundos para cada story
+            }
+
+            function nextStory() {
+                if (currentStoryIndex < stories.length - 1) {
+                    showStory(currentStoryIndex + 1);
+                } else {
+                    console.log("Stories concluídos");
+                }
+            }
+
+            function prevStory() {
+                if (currentStoryIndex > 0) {
+                    showStory(currentStoryIndex - 1);
+                }
+            }
+
+            // Navegação manual
+            nextArea.addEventListener("click", nextStory);
+            prevArea.addEventListener("click", prevStory);
+
+            // Inicializa e exibe o primeiro story
+            initializeProgressBar();
+            showStory(currentStoryIndex);
+        });
+    </script>
+</body>
+
+</html>
