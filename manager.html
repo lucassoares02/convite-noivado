@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
   <title>Lista de Convidados</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -101,7 +108,10 @@
     <p>Pendentes: <span id="pending-guests">0</span></p>
   </div>
 
-  <ul class="guest-list" id="guest-list"></ul>
+  <ul
+    class="guest-list"
+    id="guest-list"
+  ></ul>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -140,15 +150,35 @@
 
             const sendButton = document.createElement('button');
             sendButton.className = 'send-button';
-            sendButton.textContent = 'Enviar Convite';
+            sendButton.textContent = 'Copiar link';
+
             sendButton.addEventListener('click', function () {
               const confirmUrl = `https://convite-noivado.onrender.com/index.html?id=${guest.familia}`;
-              const message = `Olá ${guest.nome}, você foi convidado para nosso evento! Confirme sua presença clicando no link: ${confirmUrl}`;
-              const whatsappUrl = `https://wa.me/${guest.telefone.replace('+', '').replace(/\s/g, '')}?text=${encodeURIComponent(message)}`;
+              const message = `
+🎉✨ Olá ${guest.nome}, é com muita alegria que convidamos você e família para o nosso noivado! 💍❤️
 
-              window.open(whatsappUrl, '_blank');
+Estamos prontos para dar mais um passo importante em nossa história e seria um imenso prazer compartilhar este momento especial com você. 🥰🙏
+
+Informações importantes
+📅 Data: 15 de Fevereiro de 2025
+⏰ Horário: 19h
+📍 Local: Reserva Porto, Rua E, Nº 2, Planície da Serra.
+
+Sua presença será um presente valioso e tornará este dia ainda mais inesquecível! 🥂✨
+
+*Importante!* 
+Confirme sua presença acessando o link: ${confirmUrl}
+
+Te aguardamos lá! Com carinho,
+Giselli e Lucas 💕`;
+
+              // Copiar o texto para a área de transferência
+              navigator.clipboard.writeText(message).then(() => {
+              }).catch((err) => {
+                console.error('Erro ao copiar texto: ', err);
+                alert('Falha ao copiar a mensagem.');
+              });
             });
-
             const actions = document.createElement('div');
             actions.className = 'actions';
             actions.appendChild(statusIcon);
@@ -166,4 +196,5 @@
     });
   </script>
 </body>
+
 </html>

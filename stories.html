@@ -7,7 +7,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-    <title>Stories Simulation</title>
+    <title>Ajude-nos</title>
     <style>
         body {
             margin: 0;
@@ -79,6 +79,16 @@
             font-size: 16px;
         }
 
+        .copy-btn-cpf-container {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
         /* Para garantir que a imagem ocupe o tamanho correto */
         .pix img {
             width: 100%;
@@ -132,19 +142,42 @@
     <div style="background-color: black; width: 100%; display: flex; flex-direction: row; justify-content: center;">
 
         <!-- Imagem do QR Code Pix -->
-        <div class="pix">
+        <div
+            class="pix"
+            style=" width: 100%;"
+        >
             <br>
-            <strong style="color: white;">Quer nos ajudar?</strong>
+            <strong style="color: white; text-align: center; font-size: 30px;">Contribua com nosso <br>sonho!</strong>
+            <br>
+            <strong style="color: white; text-align: center;">PIX Telefone</strong>
+
+            <strong style="color: white; text-align: center; font-size: 20px;">(27) 9 9821-9176</strong>
+            <br>
+            <span style="color: white; text-align: center;">Lucas Soares dos Santos</span>
+            <span style="color: white; text-align: center;">Banco Inter</span>
+
+            <br>
+            <!-- Botão de copiar texto -->
+            <button
+                class="copy-btn-cpf-container"
+                onclick="copyCpf()"
+            >
+                Copiar Número
+            </button>
+
+            <br>
+
+            <br>
+            <strong style="color: white; text-align: center;">QRCode PIX</strong>
 
             <br>
             <img
-                style="margin-bottom: 130px;"
-                src="https://drive.google.com/thumbnail?id=1Ecsf5FtBI5b6vAUOXZ7AAaUqgZZcTqow"
+                style="width: 60%;"
+                src="https://res.cloudinary.com/dfuunkenf/image/upload/v1733588364/WhatsApp_Image_2024-12-07_at_21.39.45_u8n0zo.jpg"
                 alt="QR Code Pix"
             >
         </div>
-
-        <!-- Botão de copiar texto -->
+        <!-- 
         <button
             style="margin-bottom: 130px;"
             class="copy-btn-container"
@@ -153,12 +186,13 @@
             Pix Copia e Cola
         </button>
 
-
-
-    <!-- Mensagem de sucesso de cópia -->
-    <div id="copy-msg" class="copy-msg">
-        Copiado com sucesso!
-    </div>
+        <div
+            id="copy-msg"
+            class="copy-msg"
+        >
+            Copiado com sucesso!
+        </div>
+ -->
 
 
 
@@ -169,6 +203,24 @@
     <script>
         function copyText() {
             const text = "00020126700014BR.GOV.BCB.PIX0111131134976630233Um presente  para Lucas e Giselli5204000053039865802BR5923Lucas Soares dos Santos6009SAO PAULO621405103ceBldlsFQ6304DE5F";  // O texto que será copiado
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    // Mostrar a mensagem de sucesso
+                    const msg = document.getElementById("copy-msg");
+                    msg.style.display = "block";  // Exibe a mensagem
+
+                    // Esconde a mensagem após 2 segundos
+                    setTimeout(() => {
+                        msg.style.display = "none";
+                    }, 2000); // 2000ms = 2 segundos
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar texto: ', err);
+                });
+        }
+
+        function copyCpf() {
+            const text = "13113497663";  // O texto que será copiado
             navigator.clipboard.writeText(text)
                 .then(() => {
                     // Mostrar a mensagem de sucesso
